@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input} from '@angular/core';
 
 @Directive({
   selector: '[pkmnBorderCard]' // Directive d'attribut donc on met des crochets
@@ -9,9 +9,11 @@ export class BorderCardDirective {
     this.setHeight(180);
     this.setBorderColor('#f5f5f5');
    }
+
+  @Input('pkmnBorderCard') borderColor: string;
   
   @HostListener('mouseenter') onMouseEnter() {
-    this.setBorderColor("#009688");
+    this.setBorderColor(this.borderColor || "#009688");
   }
 
   @HostListener('mouseleave') onMouseLeave() {
