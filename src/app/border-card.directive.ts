@@ -5,19 +5,24 @@ import { Directive, ElementRef, HostListener, Input} from '@angular/core';
 })
 export class BorderCardDirective {
 
+  private initialColor: string = '#f5f5f5';
+  private defaultColor: string = '#009688';
+  private defaultHeight: number = 180;
+
   constructor(private el: ElementRef) {
-    this.setHeight(180);
-    this.setBorderColor('#f5f5f5');
+    this.setHeight(this.defaultHeight);
+    this.setBorderColor(this.initialColor);
    }
 
-  @Input('pkmnBorderCard') borderColor: string;
+  @Input('pkmnBorderCard') borderColor: string; // alias
+  // @Input() pkmnBorderCard: string; // sans alias
   
   @HostListener('mouseenter') onMouseEnter() {
-    this.setBorderColor(this.borderColor || "#009688");
+    this.setBorderColor(this.borderColor || this.defaultColor);
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.setBorderColor('#f5f5f5');
+    this.setBorderColor(this.initialColor);
   }
   
   setHeight(height: number) {
