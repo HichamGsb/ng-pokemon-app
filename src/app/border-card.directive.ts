@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Host, HostListener} from '@angular/core';
+import { Directive, ElementRef, HostListener} from '@angular/core';
 
 @Directive({
   selector: '[pkmnBorderCard]' // Directive d'attribut donc on met des crochets
@@ -23,6 +23,6 @@ export class BorderCardDirective {
   }
 
   setBorderColor(color: String) {
-    this.el.nativeElement.style.border = `solid 4x ${color}`;
+    this.el.nativeElement.style.border = `solid 4px ${color}`;
   }
 }
