@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+// @angular/compiler
 
 import { AppComponent } from './app.component';
 import { BorderCardDirective } from './border-card.directive';
