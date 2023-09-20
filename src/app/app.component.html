@@ -2,11 +2,11 @@
 
 <input 
     #input
-    (keyup)="selectPokemon(input.value)"
+    (keyup.enter)="selectPokemon(input.value)"
     type="number"
 />
 
-<p>{{ pokemonSelected?.name }}</p>
+<p>Vous avez selectionné le pokemon : {{ pokemonSelected?.name }}</p>
 
 <hr>
 
