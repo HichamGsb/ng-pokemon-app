@@ -3,6 +3,7 @@ import { Pokemon } from './pokemon';
 import { POKEMONS } from './mock-pokemon-list';
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Injectable()
 export class PokemonService {
@@ -21,8 +22,14 @@ export class PokemonService {
     );
   }
 
-  getPokemonById(pokemonId: number): Pokemon|undefined {
-    return POKEMONS.find(pokemon => pokemon.id == pokemonId);
+  getPokemonById(pokemonId: number): Observable<Pokemon|undefined> {
+    return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
+        tap((pokemon) => console.log(pokemon)),
+        catchError((error) => {
+          console.log(error);
+          return of(undefined);
+        })
+    );
   }
 
   getPokemonTypeList(): string[] {
